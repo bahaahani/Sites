@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <productlabel>
+            <general>
+                <enabled>1</enabled>
+                <on_sale_label>Sale!</on_sale_label>
+                <on_sale_label_color>#e41f13</on_sale_label_color>
+                <new_label>New!</new_label>
+                <new_label_color>#1979c3</new_label_color>
+                <days_as_new>30</days_as_new>
+            </general>
+        </productlabel>
+    </default>
+</config> 

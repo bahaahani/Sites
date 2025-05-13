@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove the related products from its original position -->
+        <referenceBlock name="catalog.product.related" remove="true" />
+        
+        <!-- Add a new tab for related products -->
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\ProductList\Related" name="catalog.product.related.tab" as="related_products" template="Magento_Catalog::product/list/items.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Related Products</argument>
+                    <argument name="type" xsi:type="string">related</argument>
+                </arguments>
+                <block class="Magento\Catalog\Block\Product\ProductList\Related" name="related.product.addto" as="addto" />
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="related.item.addto" as="related_addto" template="Magento_Catalog::product/list/addto.phtml"/>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="related.item.price" as="related_price" template="Magento_Catalog::product/price_box_related.phtml"/>
+            </block>
+        </referenceBlock>
+    </body>
+</page> 

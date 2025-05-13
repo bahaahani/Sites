@@ -1,0 +1,59 @@
+& when (@media-common = true) {
+    .product-labels {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+        .product-label {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            
+            &.on-sale {
+                background-color: #e41f13;
+            }
+            
+            &.new {
+                background-color: #1979c3;
+            }
+        }
+    }
+    
+    // Style for product listing page
+    .products-grid {
+        .product-item-info {
+            position: relative;
+            
+            .product-labels {
+                top: 5px;
+                left: 5px;
+            }
+        }
+    }
+    
+    // Style for product view page
+    .catalog-product-view {
+        .product-info-main {
+            .product-labels {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+                flex-direction: row;
+                
+                .product-label {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+} 

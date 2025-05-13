@@ -1,0 +1,48 @@
+<?php
+/**
+ * Product label template
+ *
+ * @var $block \Bahaa\ProductLabel\Block\ProductLabel
+ */
+
+// Get the product
+$product = $block->getProduct();
+
+// Check if module is enabled
+if (!$block->isEnabled() || !$product) {
+    return;
+}
+
+$labels = [];
+
+// Check if product is on sale
+if ($block->isOnSale($product) && $onSaleText = $block->getOnSaleLabelText()) {
+    $onSaleColor = $block->getOnSaleLabelColor() ?: '#e41f13';
+    $discountPercent = $block->getDiscountPercentage($product);
+    $labels[] = [
+        'text' => $onSaleText . ' ' . $discountPercent . '%',
+        'color' => $onSaleColor,
+        'class' => 'on-sale'
+    ];
+}
+
+// Check if product is new
+if ($block->isNew($product) && $newText = $block->getNewLabelText()) {
+    $newColor = $block->getNewLabelColor() ?: '#1979c3';
+    $labels[] = [
+        'text' => $newText,
+        'color' => $newColor,
+        'class' => 'new'
+    ];
+}
+?>
+
+<?php if (!empty($labels)): ?>
+    <div class="product-labels">
+        <?php foreach ($labels as $label): ?>
+            <span class="product-label <?= $label['class'] ?>" style="background-color: <?= $label['color'] ?>;">
+                <?= $label['text'] ?>
+            </span>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?> 

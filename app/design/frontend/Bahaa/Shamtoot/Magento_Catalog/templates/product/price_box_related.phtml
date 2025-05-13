@@ -1,0 +1,17 @@
+<?php
+/**
+ * Custom template for related products price rendering
+ */
+?>
+<?php
+/** @var \Magento\Framework\Pricing\Render\PriceBox $block */
+/** @var \Magento\Catalog\Pricing\Price\FinalPrice $priceType */
+$priceType = $block->getPriceType('final_price');
+?>
+<div class="price-box price-final_price" data-role="priceBox" data-product-id="<?= $block->getProduct()->getId() ?>">
+    <?= $block->renderAmount($priceType->getAmount(), [
+        'price_id' => 'product-price-' . $block->getProduct()->getId(),
+        'include_container' => true,
+        'display_label' => __('Special Price')
+    ]); ?>
+</div> 
