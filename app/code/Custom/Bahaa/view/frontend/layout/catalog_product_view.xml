@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Add related products tab to product details -->
+        <referenceBlock name="product.info.details">
+            <block class="Custom\Bahaa\Block\Product\View\RelatedProducts" name="related.products.tab" template="Custom_Bahaa::product/view/related_tab.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Related Products Tab</argument>
+                    <argument name="sort_order" xsi:type="string">30</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        
+        <!-- Add CSS for styling -->
+        <referenceContainer name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="custom.bahaa.css" template="Custom_Bahaa::css/styles.phtml"/>
+        </referenceContainer>
+    </body>
+</page> 

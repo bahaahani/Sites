@@ -1,0 +1,141 @@
+<?php
+/**
+ * Related products tab template
+ *
+ * @var $block \Custom\Bahaa\Block\Product\View\RelatedProducts
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="custom-related-products-tab">
+    <?php 
+    /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection|\Magento\Catalog\Model\Product[] $relatedProducts */
+    $relatedProducts = $block->getRelatedProducts(); 
+    ?>
+    <?php if ($relatedProducts && count($relatedProducts)): ?>
+        <div class="block-title">
+            <strong id="block-related-heading" role="heading" aria-level="2">
+                <?= $block->escapeHtml(__('Related Products')) ?>
+            </strong>
+        </div>
+        <div class="block-content">
+            <div class="products wrapper grid products-grid products-related">
+                <ol class="products list items product-items">
+                    <?php 
+                    /** @var \Magento\Catalog\Model\Product $relatedProduct */
+                    foreach ($relatedProducts as $relatedProduct): ?>
+                        <li class="item product product-item">
+                            <div class="product-item-info">
+                                <a href="<?= $block->escapeUrl($block->getRelatedProductUrl($relatedProduct)) ?>"
+                                   class="product photo product-item-photo">
+                                    <img src="<?= $block->escapeUrl($block->getProductImageUrl($relatedProduct)) ?>"
+                                         alt="<?= $block->escapeHtml($relatedProduct->getName()) ?>"
+                                         class="product-image-photo">
+                                </a>
+                                <div class="product details product-item-details">
+                                    <strong class="product name product-item-name">
+                                        <a class="product-item-link"
+                                           href="<?= $block->escapeUrl($block->getRelatedProductUrl($relatedProduct)) ?>">
+                                            <?= $block->escapeHtml($relatedProduct->getName()) ?>
+                                        </a>
+                                    </strong>
+                                    <div class="price-box price-final_price">
+                                        <span class="price-container price-final_price tax weee">
+                                            <span class="price-wrapper">
+                                                <span class="price">
+                                                    <?= $block->getFormattedPrice($relatedProduct) ?>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="product-item-actions">
+                                        <div class="actions-primary">
+                                            <?php if ($relatedProduct->isSaleable()): ?>
+                                                <form data-role="tocart-form"
+                                                      action="<?= $block->escapeUrl($block->getAddToCartUrl($relatedProduct)) ?>"
+                                                      method="post">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <?php if ($relatedProduct->getIsSalable()): ?>
+                                                    <div class="stock available">
+                                                        <span><?= $block->escapeHtml(__('In stock')) ?></span>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable">
+                                                        <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="message info empty">
+            <div><?= $block->escapeHtml(__('No related products found.')) ?></div>
+        </div>
+    <?php endif; ?>
+</div>
+
+<style>
+.custom-related-products-tab {
+    margin-top: 20px;
+    border: 1px solid #e8e8e8;
+    padding: 15px;
+}
+.custom-related-products-tab .block-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 10px;
+}
+.custom-related-products-tab .product-items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.custom-related-products-tab .product-item {
+    flex: 0 0 calc(25% - 20px);
+    margin: 0 10px 20px;
+    box-sizing: border-box;
+}
+.custom-related-products-tab .product-item-info {
+    text-align: center;
+}
+.custom-related-products-tab .product-item-photo {
+    display: block;
+    margin-bottom: 10px;
+}
+.custom-related-products-tab .product-image-photo {
+    max-width: 100%;
+    height: auto;
+}
+.custom-related-products-tab .product-item-name {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: block;
+}
+.custom-related-products-tab .price-box {
+    margin-bottom: 10px;
+}
+@media (max-width: 767px) {
+    .custom-related-products-tab .product-item {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+@media (max-width: 480px) {
+    .custom-related-products-tab .product-item {
+        flex: 0 0 calc(100% - 20px);
+    }
+}
+</style> 

@@ -1,0 +1,118 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<div class="hello-world-container">
+    <style>
+        .hello-world-container {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .hello-world-header {
+            margin-bottom: 40px;
+        }
+        .hello-world-header h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .hello-world-header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hello-world-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .hello-world-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hello-world-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .hello-world-card-icon {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+        }
+        .hello-world-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .hello-world-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+        }
+        .back-to-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 117, 252, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="hello-world-header">
+        <h1>Hello World from Custom_Hello Module</h1>
+        <p>This is a custom module created for demonstration purposes.</p>
+        <p>Hello DEAR, this is your sample data visible now!</p>
+    </div>
+
+    <div class="hello-world-cards">
+        <div class="hello-world-card">
+            <div class="hello-world-card-icon">✓</div>
+            <h3>Custom Controllers</h3>
+            <p>Learn how Magento 2 controllers handle requests and return responses, creating meaningful user interactions.</p>
+        </div>
+        
+        <div class="hello-world-card">
+            <div class="hello-world-card-icon">⚙️</div>
+            <h3>Module Structure</h3>
+            <p>Explore the organization of files and directories that make up a functional Magento 2 module.</p>
+        </div>
+        
+        <div class="hello-world-card">
+            <div class="hello-world-card-icon">🎨</div>
+            <h3>UI/UX Design</h3>
+            <p>See how professional design principles can be applied to enhance the user experience in custom modules.</p>
+        </div>
+    </div>
+
+    <a href="<?= $block->getUrl('') ?>" class="back-to-home">
+        Return to Homepage
+    </a>
+</div> 

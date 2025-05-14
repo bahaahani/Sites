@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="custom_hello_widget" class="Custom\Hello\Block\Banner" placeholder_image="Custom_Hello::images/widget_banner.png">
+        <label translate="true">Hello World Banner Widget</label>
+        <description translate="true">Displays a banner with a button to the Hello World page</description>
+        <parameters>
+            <parameter name="template" xsi:type="select" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Custom_Hello::catalog_banner.phtml">
+                        <label translate="true">Compact Banner</label>
+                    </option>
+                    <option name="full" value="Custom_Hello::banner.phtml">
+                        <label translate="true">Full Banner</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets> 

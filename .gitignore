@@ -20,8 +20,5 @@
 .DS_Store
 
 # Except for the following files
-!/pub/static/frontend/Bahaa/Shamtoot/**
-!/app/design/frontend/Bahaa/Shamtoot/**
-!/app/code/Bahaa/**
 !/README.md
 !/.gitignore 

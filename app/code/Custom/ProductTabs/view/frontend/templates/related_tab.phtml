@@ -1,0 +1,111 @@
+<?php
+/**
+ * Related Products Tab
+ */
+$product = $block->getProduct();
+$relatedProducts = $product->getRelatedProducts();
+?>
+
+<?php if (!empty($relatedProducts)): ?>
+    <div class="related-products-tab">
+        <div class="product-items">
+            <?php foreach ($relatedProducts as $relatedProduct): ?>
+                <?php 
+                $imageUrl = $block->getProductImageUrl($relatedProduct);
+                $productPrice = $block->getFormattedProductPrice($relatedProduct);
+                ?>
+                <div class="product-item">
+                    <div class="product-item-info">
+                        <a href="<?= $block->escapeUrl($relatedProduct->getProductUrl()) ?>" class="product-item-photo">
+                            <img src="<?= $block->escapeUrl($imageUrl) ?>"
+                                 alt="<?= $block->escapeHtml($relatedProduct->getName()) ?>"
+                                 class="product-image-photo"/>
+                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a href="<?= $block->escapeUrl($relatedProduct->getProductUrl()) ?>">
+                                    <?= $block->escapeHtml($relatedProduct->getName()) ?>
+                                </a>
+                            </strong>
+                            <div class="price-box">
+                                <span class="price">
+                                    <?= $productPrice ?>
+                                </span>
+                            </div>
+                            <div class="product-item-actions">
+                                <div class="actions-primary">
+                                    <form data-role="tocart-form" action="<?= $block->escapeUrl($block->getAddToCartUrl($relatedProduct)) ?>" method="post">
+                                        <input type="hidden" name="product" value="<?= $relatedProduct->getId() ?>">
+                                        <input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>">
+                                        <button type="submit" class="action tocart primary">
+                                            <span><?= __('Add to Cart') ?></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php else: ?>
+    <p class="empty"><?= __('No related products found.') ?></p>
+<?php endif; ?>
+
+<style>
+.related-products-tab .product-items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.related-products-tab .product-item {
+    width: calc(25% - 20px);
+    margin: 0 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.related-products-tab .product-item:hover {
+    transform: translateY(-5px);
+}
+.related-products-tab .product-item-info {
+    padding-bottom: 15px;
+}
+.related-products-tab .product-item-photo {
+    display: block;
+    margin-bottom: 10px;
+}
+.related-products-tab .product-item-photo img {
+    width: 100%;
+    display: block;
+}
+.related-products-tab .product-item-details {
+    padding: 0 15px;
+}
+.related-products-tab .product-item-name {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    height: 40px;
+    overflow: hidden;
+}
+.related-products-tab .price-box {
+    margin-bottom: 10px;
+}
+.related-products-tab .action.tocart {
+    width: 100%;
+}
+@media (max-width: 767px) {
+    .related-products-tab .product-item {
+        width: calc(50% - 20px);
+    }
+}
+</style>
+
+<script>
+    require(['jquery'], function($) {
+        // Additional JavaScript functionality can be added here
+    });
+</script> 

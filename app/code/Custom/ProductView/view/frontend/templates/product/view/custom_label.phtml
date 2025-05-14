@@ -1,0 +1,51 @@
+<?php
+/**
+ * Custom label template for product view
+ */
+?>
+<div class="product-label-wrapper">
+    <div class="product-satisfaction-guarantee">
+        <span class="guarantee-icon">✓</span>
+        <span class="guarantee-text">100% Satisfaction Guarantee</span>
+    </div>
+    <div class="product-shipping-info">
+        <span class="shipping-icon">🚚</span>
+        <span class="shipping-text">Free Shipping on orders over $50</span>
+    </div>
+    <style>
+        .product-label-wrapper {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #1979c3;
+        }
+        .product-satisfaction-guarantee,
+        .product-shipping-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .product-shipping-info {
+            margin-bottom: 0;
+        }
+        .guarantee-icon,
+        .shipping-icon {
+            background: #e6f4ff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: #1979c3;
+            font-size: 14px;
+        }
+        .guarantee-text,
+        .shipping-text {
+            font-size: 14px;
+            color: #444;
+        }
+    </style>
+</div> 

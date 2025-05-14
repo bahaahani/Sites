@@ -1,0 +1,109 @@
+<?php
+/**
+ * Feature 1: Product Recommendations Tab
+ */
+$product = $block->getProduct();
+?>
+
+<div class="feature-tab recommendations-tab">
+    <div class="feature-icon">
+        <i class="icon-recommendation"></i>
+    </div>
+    
+    <div class="feature-content">
+        <h3><?= __('Smart Product Recommendations') ?></h3>
+        
+        <p class="feature-description">
+            <?= __('Our AI-powered recommendation engine analyses your browsing history and purchase patterns to suggest products that match your style and preferences. Discover items that complement your wardrobe or find alternatives to products you\'ve been viewing.') ?>
+        </p>
+        
+        <div class="recommendation-benefits">
+            <div class="benefit-item">
+                <span class="benefit-title"><?= __('Personalized Suggestions') ?></span>
+                <p><?= __('Products selected based on your unique preferences and shopping habits.') ?></p>
+            </div>
+            
+            <div class="benefit-item">
+                <span class="benefit-title"><?= __('Trending Products') ?></span>
+                <p><?= __('Discover what\'s popular with other shoppers with similar tastes.') ?></p>
+            </div>
+            
+            <div class="benefit-item">
+                <span class="benefit-title"><?= __('Complete Your Look') ?></span>
+                <p><?= __('Find accessories and complementary items that go perfectly with your purchase.') ?></p>
+            </div>
+        </div>
+        
+        <div class="feature-cta">
+            <button type="button" class="action primary" id="enable-recommendations">
+                <span><?= __('Enable Personalized Recommendations') ?></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.feature-tab {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.feature-content h3 {
+    color: #1979c3;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.feature-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.recommendation-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px 30px;
+}
+
+.benefit-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
+    margin: 0 10px 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.benefit-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.feature-cta {
+    text-align: center;
+}
+
+.feature-cta .action.primary {
+    padding: 10px 25px;
+}
+
+@media (max-width: 767px) {
+    .recommendation-benefits {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+    require(['jquery'], function($) {
+        $('#enable-recommendations').on('click', function() {
+            alert('Personalized recommendations have been enabled for your account!');
+        });
+    });
+</script> 

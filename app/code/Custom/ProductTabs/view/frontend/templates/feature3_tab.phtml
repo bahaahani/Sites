@@ -1,0 +1,386 @@
+<?php
+/**
+ * Feature 3: Size Guide Tab
+ */
+$product = $block->getProduct();
+?>
+
+<div class="feature-tab size-guide-tab">
+    <div class="feature-content">
+        <h3><?= __('Interactive Size Guide') ?></h3>
+        
+        <p class="feature-description">
+            <?= __('Finding the perfect fit is essential when shopping online. Our comprehensive size guide helps you choose the right size for your body type. Take your measurements and use our chart to find your ideal fit.') ?>
+        </p>
+        
+        <div class="size-guide-container">
+            <div class="size-guide-tabs">
+                <div class="size-tab active" data-tab="tab-1"><?= __('Clothing') ?></div>
+                <div class="size-tab" data-tab="tab-2"><?= __('Shoes') ?></div>
+                <div class="size-tab" data-tab="tab-3"><?= __('Accessories') ?></div>
+            </div>
+            
+            <div class="size-guide-content">
+                <div class="size-tab-pane active" id="tab-1">
+                    <h4><?= __('Clothing Size Chart (inches)') ?></h4>
+                    
+                    <div class="size-table-container">
+                        <table class="size-table">
+                            <thead>
+                                <tr>
+                                    <th><?= __('Size') ?></th>
+                                    <th><?= __('XS') ?></th>
+                                    <th><?= __('S') ?></th>
+                                    <th><?= __('M') ?></th>
+                                    <th><?= __('L') ?></th>
+                                    <th><?= __('XL') ?></th>
+                                    <th><?= __('XXL') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?= __('Chest') ?></td>
+                                    <td>32-34</td>
+                                    <td>35-37</td>
+                                    <td>38-40</td>
+                                    <td>41-43</td>
+                                    <td>44-46</td>
+                                    <td>47-49</td>
+                                </tr>
+                                <tr>
+                                    <td><?= __('Waist') ?></td>
+                                    <td>26-28</td>
+                                    <td>29-31</td>
+                                    <td>32-34</td>
+                                    <td>35-37</td>
+                                    <td>38-40</td>
+                                    <td>41-43</td>
+                                </tr>
+                                <tr>
+                                    <td><?= __('Hip') ?></td>
+                                    <td>34-36</td>
+                                    <td>37-39</td>
+                                    <td>40-42</td>
+                                    <td>43-45</td>
+                                    <td>46-48</td>
+                                    <td>49-51</td>
+                                </tr>
+                                <tr>
+                                    <td><?= __('Inseam') ?></td>
+                                    <td>30</td>
+                                    <td>30.5</td>
+                                    <td>31</td>
+                                    <td>31.5</td>
+                                    <td>32</td>
+                                    <td>32.5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="measurement-guide">
+                        <h5><?= __('How to Measure') ?></h5>
+                        <div class="measurement-tips">
+                            <div class="measurement-tip">
+                                <strong><?= __('Chest:') ?></strong>
+                                <p><?= __('Measure around the fullest part of your chest, keeping the tape horizontal.') ?></p>
+                            </div>
+                            <div class="measurement-tip">
+                                <strong><?= __('Waist:') ?></strong>
+                                <p><?= __('Measure around your natural waistline, keeping the tape comfortably loose.') ?></p>
+                            </div>
+                            <div class="measurement-tip">
+                                <strong><?= __('Hip:') ?></strong>
+                                <p><?= __('Measure around the fullest part of your hips, approximately 8" below your waistline.') ?></p>
+                            </div>
+                            <div class="measurement-tip">
+                                <strong><?= __('Inseam:') ?></strong>
+                                <p><?= __('Measure from the crotch to the bottom of the leg.') ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="size-tab-pane" id="tab-2">
+                    <h4><?= __('Shoe Size Chart') ?></h4>
+                    
+                    <div class="size-table-container">
+                        <table class="size-table">
+                            <thead>
+                                <tr>
+                                    <th><?= __('US') ?></th>
+                                    <th><?= __('EU') ?></th>
+                                    <th><?= __('UK') ?></th>
+                                    <th><?= __('Inches') ?></th>
+                                    <th><?= __('CM') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>6</td>
+                                    <td>39</td>
+                                    <td>5.5</td>
+                                    <td>9.25"</td>
+                                    <td>23.5</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>40</td>
+                                    <td>6.5</td>
+                                    <td>9.5"</td>
+                                    <td>24.1</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>41</td>
+                                    <td>7.5</td>
+                                    <td>9.75"</td>
+                                    <td>24.8</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>42</td>
+                                    <td>8.5</td>
+                                    <td>10"</td>
+                                    <td>25.4</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>43</td>
+                                    <td>9.5</td>
+                                    <td>10.25"</td>
+                                    <td>26</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>44</td>
+                                    <td>10.5</td>
+                                    <td>10.5"</td>
+                                    <td>26.7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="size-tab-pane" id="tab-3">
+                    <h4><?= __('Accessories Size Guide') ?></h4>
+                    
+                    <div class="accessories-guide">
+                        <div class="accessory-section">
+                            <h5><?= __('Belts') ?></h5>
+                            <p><?= __('To find your belt size, measure around where you typically wear the belt and add 2 inches to your waist size.') ?></p>
+                            <table class="size-table">
+                                <thead>
+                                    <tr>
+                                        <th><?= __('Waist (inches)') ?></th>
+                                        <th><?= __('Belt Size') ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>28-30</td>
+                                        <td>30-32</td>
+                                    </tr>
+                                    <tr>
+                                        <td>32-34</td>
+                                        <td>34-36</td>
+                                    </tr>
+                                    <tr>
+                                        <td>36-38</td>
+                                        <td>38-40</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40-42</td>
+                                        <td>42-44</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="accessory-section">
+                            <h5><?= __('Hats') ?></h5>
+                            <p><?= __('Measure the circumference of your head about 1/2 inch above your ears.') ?></p>
+                            <table class="size-table">
+                                <thead>
+                                    <tr>
+                                        <th><?= __('Inches') ?></th>
+                                        <th><?= __('CM') ?></th>
+                                        <th><?= __('Hat Size') ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>21 1/8</td>
+                                        <td>53.7</td>
+                                        <td>S</td>
+                                    </tr>
+                                    <tr>
+                                        <td>22</td>
+                                        <td>55.9</td>
+                                        <td>M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>23</td>
+                                        <td>58.4</td>
+                                        <td>L</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24</td>
+                                        <td>61</td>
+                                        <td>XL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="size-guide-cta">
+            <button type="button" class="action primary" id="find-my-size">
+                <span><?= __('Calculate My Size') ?></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.size-guide-tab {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.size-guide-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.size-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    background: #eee;
+}
+
+.size-tab.active {
+    background: #fff;
+    border-color: #ddd;
+    margin-bottom: -1px;
+}
+
+.size-guide-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.size-tab-pane {
+    display: none;
+}
+
+.size-tab-pane.active {
+    display: block;
+}
+
+.size-table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.size-table th, .size-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.size-table th {
+    background: #f5f5f5;
+}
+
+.size-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.size-table tr:hover {
+    background: #f0f0f0;
+}
+
+.measurement-guide h5,
+.accessory-section h5 {
+    margin-bottom: 10px;
+    color: #1979c3;
+}
+
+.measurement-tips {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.measurement-tip {
+    flex: 1 0 200px;
+    margin: 0 10px 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.accessory-section {
+    margin-bottom: 30px;
+}
+
+.size-guide-cta {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.size-guide-cta .action.primary {
+    padding: 10px 25px;
+}
+
+@media (max-width: 767px) {
+    .size-tab {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .measurement-tips {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+    require(['jquery'], function($) {
+        $('.size-tab').on('click', function() {
+            // Remove active class from all tabs
+            $('.size-tab').removeClass('active');
+            $('.size-tab-pane').removeClass('active');
+            
+            // Add active class to current tab
+            $(this).addClass('active');
+            
+            // Show corresponding tab content
+            var tabId = $(this).data('tab');
+            $('#' + tabId).addClass('active');
+        });
+        
+        $('#find-my-size').on('click', function() {
+            alert('The size calculator feature is currently disabled in this demo.');
+        });
+    });
+</script> 

@@ -25,7 +25,6 @@ This is a Magento 2 development project implementing various features as part of
 ### Product Labels Module (Bonus Feature)
 - Adds "Sale" and "New" labels to products
 - Shows discount percentage on sale items
-- Configurable through admin panel
 - Applies to both product listing and product view pages
 
 ## Installation

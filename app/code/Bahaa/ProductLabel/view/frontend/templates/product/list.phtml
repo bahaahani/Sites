@@ -4,11 +4,16 @@
  *
  * @var $block \Magento\Catalog\Block\Product\ListProduct
  * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var \Magento\Catalog\Helper\Output $_helper
+ * @var \Bahaa\ProductLabel\Block\ProductLabel $labelBlock
  */
 
 use Magento\Framework\App\Action\Action;
 
+// phpcs:disable Magento2.Templates.ThisInTemplate
 // Get the label block
+/** @var \Bahaa\ProductLabel\Block\ProductLabel $labelBlock */
 $labelBlock = $block->getLayout()->createBlock(
     \Bahaa\ProductLabel\Block\ProductLabel::class,
     'product.label.listing'
@@ -32,11 +37,12 @@ $pos = $block->getPositioned();
         if ($block->getProductCollection()->getSize()): ?>
             <ol class="products list items product-items">
                 <?php
-                /** @var $_product \Magento\Catalog\Model\Product */
+                /** @var \Magento\Catalog\Model\Product $_product */
                 foreach ($block->getProductCollection() as $_product): ?>
                     <li class="item product product-item">
                         <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
                             <?php
+                            /** @var \Magento\Catalog\Block\Product\Image $productImage */
                             $productImage = $block->getImage($_product, $imageDisplayArea);
                             if ($pos != null) {
                                 $position = 'left:' . $productImage->getWidth() . 'px;'
@@ -51,9 +57,8 @@ $pos = $block->getPositioned();
                             <div class="product details product-item-details">
                                 <?php
                                 // Add product labels
-                                if ($labelBlock) {
-                                    $labelBlock->setProduct($_product);
-                                    echo $labelBlock->toHtml();
+                                if ($labelBlock instanceof \Bahaa\ProductLabel\Block\ProductLabel) {
+                                    echo $labelBlock->setProduct($_product)->toHtml();
                                 }
                                 ?>
                                 <strong class="product name product-item-name">
@@ -142,7 +147,7 @@ $pos = $block->getPositioned();
             {
                 "[data-role=tocart-form], .form.map.checkout": {
                     "catalogAddToCart": {
-                        "product_sku": "<?= $escaper->escapeJs($_product->getSku()) ?>"
+                        "product_sku": "<?= /* @noEscape */ isset($_product) ? $escaper->escapeJs($_product->getSku()) : '' ?>"
                     }
                 }
             }

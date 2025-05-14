@@ -1,0 +1,273 @@
+<?php
+/**
+ * Popup template
+ */
+?>
+<div id="custom-popup" class="custom-popup-overlay">
+    <div class="custom-popup-content">
+        <span class="custom-popup-close">&times;</span>
+        <h2>New Features Coming Soon!</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3>1. AR Product Visualization</h3>
+                <p>Try products in your space with our new augmented reality feature. See how furniture, decor, and more will look in your home before buying!</p>
+            </div>
+            <div class="feature-item">
+                <h3>2. Personalized Shopping Assistant</h3>
+                <p>Meet our AI shopping assistant that learns your preferences and helps you discover products you'll love with personalized recommendations.</p>
+            </div>
+            <div class="feature-item">
+                <h3>3. Express Checkout</h3>
+                <p>Introducing one-click checkout for registered customers. Save your payment and shipping details for a seamless shopping experience!</p>
+            </div>
+        </div>
+        
+        <div class="popup-subscription-form">
+            <h4><?= $block->escapeHtml(__('Get notified when these features launch:')) ?></h4>
+            <form id="popup-subscription-form" class="form" action="<?= $block->escapeUrl($block->getUrl('custompopup/subscription/save')) ?>" method="post">
+                <?= $block->getBlockHtml('formkey') ?>
+                <div class="field required">
+                    <div class="control">
+                        <input type="email" name="email" id="popup-email" 
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>" 
+                               class="input-text" 
+                               data-validate="{required:true, 'validate-email':true}" 
+                               aria-required="true">
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="action primary" id="popup-subscribe-btn">
+                        <span><?= $block->escapeHtml(__('Notify Me')) ?></span>
+                    </button>
+                </div>
+                <div class="popup-subscription-response"></div>
+            </form>
+        </div>
+        
+        <div class="popup-no-thanks">
+            <a href="#" id="popup-no-thanks"><?= $block->escapeHtml(__('No thanks, I\'ll check back later')) ?></a>
+        </div>
+    </div>
+</div>
+
+<script>
+require(['jquery', 'mage/mage', 'domReady!'], function($) {
+    // Show popup after configured delay
+    setTimeout(function() {
+        // Check if popup was already closed by the user
+        if (!document.cookie.match(/popup_closed=true/)) {
+            $('#custom-popup').addClass('active');
+        }
+    }, <?= $block->getPopupDelay() ?>);
+    
+    // Form submission
+    $('#popup-subscription-form').mage('validation', {}).submit(function(e) {
+        e.preventDefault();
+        
+        var form = $(this);
+        if (form.valid()) {
+            $.ajax({
+                url: form.attr('action'),
+                type: 'post',
+                dataType: 'json',
+                data: form.serialize(),
+                beforeSend: function() {
+                    $('#popup-subscribe-btn').prop('disabled', true);
+                    $('.popup-subscription-response').html('<div class="message"><?= $block->escapeHtml(__('Processing...')) ?></div>');
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('.popup-subscription-response').html('<div class="message success">' + response.message + '</div>');
+                        form.hide();
+                        setCookie('popup_subscribed', 'true', 30);
+                        
+                        // Close popup after 3 seconds if successfully subscribed
+                        setTimeout(function() {
+                            $('#custom-popup').removeClass('active');
+                        }, 3000);
+                    } else {
+                        $('.popup-subscription-response').html('<div class="message error">' + response.message + '</div>');
+                        $('#popup-subscribe-btn').prop('disabled', false);
+                    }
+                },
+                error: function() {
+                    $('.popup-subscription-response').html('<div class="message error"><?= $block->escapeHtml(__('An error occurred. Please try again.')) ?></div>');
+                    $('#popup-subscribe-btn').prop('disabled', false);
+                }
+            });
+        }
+    });
+    
+    // Close popup when X is clicked
+    $('.custom-popup-close').on('click', function() {
+        $('#custom-popup').removeClass('active');
+        // Set cookie to prevent popup from showing again for configured days
+        setCookie('popup_closed', 'true', <?= $block->getCookieLifetime() ?>);
+    });
+    
+    // No thanks link
+    $('#popup-no-thanks').on('click', function(e) {
+        e.preventDefault();
+        $('#custom-popup').removeClass('active');
+        setCookie('popup_closed', 'true', <?= $block->getCookieLifetime() ?>);
+    });
+    
+    // Close popup when clicking outside content
+    $('#custom-popup').on('click', function(e) {
+        if ($(e.target).is('#custom-popup')) {
+            $('#custom-popup').removeClass('active');
+            setCookie('popup_closed', 'true', <?= $block->getCookieLifetime() ?>);
+        }
+    });
+    
+    // Helper function to set cookies
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+});
+</script>
+
+<style>
+.custom-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-popup-overlay.active {
+    display: flex;
+}
+
+.custom-popup-content {
+    position: relative;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.custom-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.custom-popup-close:hover {
+    color: #333;
+}
+
+.custom-popup-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1979c3;
+}
+
+.feature-list {
+    margin-bottom: 25px;
+}
+
+.feature-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-item h3 {
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: #666;
+}
+
+.popup-subscription-form {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 5px;
+}
+
+.popup-subscription-form h4 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.popup-subscription-form .field {
+    margin-bottom: 15px;
+}
+
+.popup-subscription-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-subscription-form .actions {
+    text-align: center;
+}
+
+.popup-subscription-response {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.popup-subscription-response .message {
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.popup-subscription-response .success {
+    background-color: #e5efe5;
+    color: #006400;
+}
+
+.popup-subscription-response .error {
+    background-color: #fae5e5;
+    color: #e02b27;
+}
+
+.popup-no-thanks {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.popup-no-thanks a {
+    color: #999;
+    text-decoration: underline;
+}
+
+.popup-no-thanks a:hover {
+    color: #666;
+}
+</style> 

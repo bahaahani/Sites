@@ -1,0 +1,49 @@
+<style>
+/* Custom Bahaa Module Styles */
+.product-info-main .product-info-price {
+    margin-bottom: 15px;
+}
+
+.product.data.items > .item.title.active > .switch {
+    border-bottom: 2px solid #1979c3;
+}
+
+.product.data.items > .item.content {
+    padding: 25px;
+}
+
+/* Improvements for the related products tab */
+.related.products.tab .product-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.related.products.tab .product-image-photo {
+    max-height: 200px;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.related.products.tab .product-item-name {
+    height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 767px) {
+    .related.products.tab .product-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .related.products.tab .product-items {
+        grid-template-columns: 1fr;
+    }
+}
+</style> 
